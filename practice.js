@@ -71,8 +71,42 @@ var callFriend = function(){
   Once completed, add a second argument that allows the function to be invoked N number of times.
   After the function has been called N number of times, console.log('STAHHP');
 */
+  var callFn = function(){
+    console.log('working...');
+  }
 
-  
+  var myFn = function(func){
+    return function(){
+      if(!this.alreadyRan){
+        func();
+        this.alreadyRan = true;
+      }
+    }
+  }
 
+  var once = myFn(callFn);
+  once();
+  once();
+
+  //Set number of times...
+  var callFn = function (){
+    console.log('working...');
+  }
+
+  var myFn = function(func, N){
+    this.life = N;
+    return function(){
+      if(this.life > 0){
+        func();
+        this.life--;
+      }
+    }
+  }
+
+  var setCycle = myFn(callFn, 3);
+  setCycle();
+  setCycle();
+  setCycle();
+  setCycle();
 
 
