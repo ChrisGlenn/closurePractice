@@ -76,6 +76,7 @@ var callFriend = function(){
   }
 
   var myFn = function(func){
+    this.alreadyRan = false;
     return function(){
       if(!this.alreadyRan){
         func();
